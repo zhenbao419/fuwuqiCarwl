@@ -1,0 +1,81 @@
+
+先安装npm install request cheerio mongoose express ejs iconv-lite cron async debug --save
+这样就可以用了
+
+
+
+ mongod --dbpath=E:\hzMongodb\data
+
+
+思路：
+    1写一个read模块，用来传入url地值，返回读取后的对象数组
+    2把上面的对象数组保存在数据库中的mongodb
+    3简历一个web服务器显示保存的数据库
+    4开启一个计划任务每小时更新一次数据库
+    5把此项目发布github并且不熟阿里云上
+
+
+// 这个项目执行的语法
+
+若是在命令行启动的话 那么进入cd tasks这个文件夹  然后执行node main.js
+                  再然后想要看到你的debug的那些东西，那么就再执行一句 set DEBUG=crawl:*
+                  然后再执行node main.js 就能看到了
+
+
+买服务器
+
+ftp://172.18.1.139/software/下载两个程序
+
+xshell
+
+
+用Xshell 这个链接服务器
+ssh root@120.26.207.136(如果是在git bash里面的话需要加这一句话 若是用xshell 5的话那么就直接输入在xshell里面输入下面3个命令就好了)
+   1、升级操作系统
+             apt-get update
+
+   2、安装npm
+         apt-get install npm       输入y
+
+   3、安装 n
+          npm install n -g       n是node的模块所以用npm安装
+          n  stable       安装稳定版本
+
+   4、安装 git
+          apt-get install git
+           (把你的项目上传到github上 然后就能用了 创建一个 touch .gitignore
+                    git init   git add -a   git
+           )
+
+   5.把当前项目变成一个git仓库
+       git init
+       git add -A
+       git commit -m"初始化仓库"
+
+          git remote add origin http。。。（在github里面有直接用就好）
+           git push -u origin master
+
+
+
+    6、到服务器上克隆项目并安装依赖
+            git clone 地址
+            npm install
+
+
+    7、安装mongodb
+          apt-get  install mongodb
+
+    8、设置环境变量
+          export DEBUG=crawl:*
+
+    9、启动服务
+       就是服务器的那个地址
+        cd tasks
+        node main.js
+        cd ..
+        node server.js
+
+    10、永久启动服务器 (命令窗口关掉后就没有了 但是执行下面的命令的话那么就成了)
+            npm install pm2 -g
+            pm2 start server.js  --name "zijiqidemingzi-crawl"
+
